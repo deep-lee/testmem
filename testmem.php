@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 
 include 'conn.php';
 
-memcache = new Memcache;
-$memcache->connect('127.0.0.1', 11211) or die ("Could not connect");
+$mem = new Memcache();
+$mem->connect("127.0.0.1", 11211);
 
 echo "connected to memcache";
 
