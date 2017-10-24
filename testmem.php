@@ -1,9 +1,13 @@
 <?php
 
+ini_set('display_errors', true);
+
+error_reporting(E_ALL);
+
 include 'conn.php';
 
 memcache = new Memcache;
-$memcache->connect('localhost', 11211) or die ("Could not connect");
+$memcache->connect('127.0.0.1', 11211) or die ("Could not connect");
 //缓存服务器中，都是键值对，这里我们设定唯一的键
 $key = md5('1');
 $cache_result = array();
