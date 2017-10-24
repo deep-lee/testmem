@@ -8,6 +8,9 @@ include 'conn.php';
 
 memcache = new Memcache;
 $memcache->connect('127.0.0.1', 11211) or die ("Could not connect");
+
+echo "connected to memcache";
+
 //缓存服务器中，都是键值对，这里我们设定唯一的键
 $key = md5('1');
 $cache_result = array();
@@ -15,9 +18,11 @@ $cache_result = array();
 $cache_result = $memcache->get($key);
 //如果存在该键对应的值，说明缓存中存在该内容
 if($cache_result){
+  echo "result has cached in memcache";
 	//那我们直接取出缓存的内容就可以了
 	$demos_result=$cache_result;
 } else {
+  echo "get result from mysql";
 	//如果缓存中没有该键对应的值数据，说明请求是第一次到达
 	//首先，我们需要从数据库中取出该值
 	$v=mysql_query("select * from testmem where id=1");
