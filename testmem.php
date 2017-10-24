@@ -15,7 +15,7 @@ echo "connected to memcache";
 $key = md5('1');
 $cache_result = array();
 //根据键，从缓存服务器中获取它的值
-$cache_result = $memcache->get($key);
+$cache_result = $mem->get($key);
 //如果存在该键对应的值，说明缓存中存在该内容
 if($cache_result){
   echo "result has cached in memcache";
@@ -31,7 +31,7 @@ if($cache_result){
 		$demos_result[]=$row;
 	}
 	//最后，将这次从数据库取出的内容，放到Memcached缓存服务器，这里就是缓存的精髓
-	$memcache->set($key, $demos_result, MEMCACHE_COMPRESSED, 1200);
+	$mem->set($key, $demos_result, MEMCACHE_COMPRESSED, 1200);
 }
 
 echo json_encode($demos_result);
